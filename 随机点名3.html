@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .select {
+            background: orangered;
+        }
+
+        table {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+<div class="besides">
+    <table>
+        <tbody id="tbd">
+        <tr>
+            <td>张学业</td>
+            <td>尹伟</td>
+            <td>满意</td>
+            <td>郑斌龙</td>
+            <td>郑培文</td>
+            <td>赵文元</td>
+            <td>郭焕斌</td>
+            <td>周琰</td>
+        </tr>
+        <tr>
+            <td>李浩</td>
+            <td>秦佳俊</td>
+            <td>王智勇</td>
+            <td>杨</td>
+            <td>王磊</td>
+            <td>孙梦尧</td>
+            <td>王梁</td>
+            <td>邓鹏飞</td>
+        </tr>
+        <tr>
+            <td>王月</td>
+            <td>张桦</td>
+            <td>李伟民</td>
+            <td>赵东亚</td>
+            <td>吴李桃</td>
+            <td>刘平</td>
+            <td>王倩</td>
+            <td>徐光旭</td>
+        </tr>
+        <tr>
+            <td>刘杨诚</td>
+            <td>刘丽娟</td>
+            <td>刘鹏</td>
+            <td>杨潇</td>
+            <td>邹玉平</td>
+            <td>候亚杰</td>
+            <td>肖磊鑫</td>
+            <td>蒋吉兆</td>
+        </tr>
+        <tr>
+            <td>耿芳芳</td>
+            <td>卢帅</td>
+            <td>朱博文</td>
+            <td>高立业</td>
+            <td>钱玉淳</td>
+            <td>黄智超</td>
+            <td>杨佳缙</td>
+            <td>杨振杰</td>
+        </tr>
+        <tr>
+            <td>张学泽</td>
+            <td>朱琼洁</td>
+            <td>周圣凯</td>
+            <td>邸鑫</td>
+            <td>李春罗</td>
+            <td>曹嘉远</td>
+            <td>郝熠</td>
+            <td>王圣红</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div id="btnAll" class="">
+    <input type="button" value="点一个同学" id="one"/>
+    <input type="button" value="点一组同学" id="group"/>
+</div>
+<script>
+    //获取tbd
+    var tbdObj = document.getElementById("tbd");
+    //点一组同学  获取所有tr
+    var trs = document.getElementById("tbd").getElementsByTagName("tr");
+    //遍历所有tr
+    for (var i = 0; i < trs.length; i++) {
+        //给每个tr加上索引
+        trs[i].setAttribute("index", i);
+        //注册点击事件
+//        document.getElementById("group").onclick = groupClick;
+        var num=0;
+        document.getElementById("group").onclick = function () {
+            num++;
+            clearInterval(timer);
+            function setTime() {
+                if (num%2!=0) {
+                    //清除样式 排他
+                    for (var a = 0; a < tds.length; a++) {
+                        tds[a].removeAttribute("class");
+                    }
+                    //产生随机数
+                    var num = parseInt(Math.random() * trs.length);
+                    for (var j = 0; j < trs.length; j++) {
+                        trs[j].className = "";
+                    }
+                    trs[num].className = "select";
+                } else {
+                    clearInterval(timer);
+                    timer=null;
+                }
+            }
+            var timer=setInterval(setTime,1000);
+        };
+    }
+
+
+
+    //点一个同学 获取所有td
+    var tds = document.getElementById("tbd").getElementsByTagName("td");
+    //遍历
+    for (var k = 0; k < tds.length; k++) {
+        //添加索引
+        tds[k].setAttribute("index", k);
+//        document.getElementById("one").onclick = oneClick;
+        document.getElementById("one").onclick = function () {
+            clearInterval(timer);
+            function setTime (){
+                if (num%2!=0) {
+                    for (var b = 0; b < trs.length; b++) {
+                        trs[b].removeAttribute("class");
+                    }
+                    var num = parseInt(Math.random() * trs.length);
+                    for (var l = 0; l < tds.length; l++) {
+                        tds[l].className = "";
+                    }
+                    tds[num].className = "select";
+                } else{
+                    for (var b = 0; b < trs.length; b++) {
+                        trs[b].removeAttribute("class");
+                    }
+                    var num = parseInt(Math.random() * trs.length);
+                    for (var l = 0; l < tds.length; l++) {
+                        tds[l].className = "";
+                    }
+                    tds[num].className = "select";
+                    clearInterval(timer);
+                    timer=null;
+                    break;
+                }
+            }
+           var timer=setInterval(setTime,1000);
+        };
+    }
+
+
+
+
+
+//    function oneClick() {
+//        if (this.value == "点一个同学") {
+//            this.value = "停止";
+//            setInterval(oneClick, 1000);
+//            for (var b = 0; b < trs.length; b++) {
+//                trs[b].removeAttribute("class");
+//            }
+//            var num = parseInt(Math.random() * trs.length);
+//            for (var l = 0; l < tds.length; l++) {
+//                tds[l].className = "";
+//            }
+//            tds[num].className = "select";
+//        } else if (document.getElementById("one").value == "停止") {
+//            document.getElementById("one").value = "点一个同学";
+//            clearInterval(setInterval(oneClick, 1000));
+//        }
+//    }
+</script>
+</body>
+</html>

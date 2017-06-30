@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        input {
+            width: 50px;
+            margin: 5px;
+        }
+
+        .btn {
+            width: 80px;
+        }
+    </style>
+</head>
+<body>
+<div id="dv"></div>
+<div id="dvv">
+    <input type="button" value="点一个同学" id="btnOne" class="btn"/>
+    <input type="button" value="点一组同学" id="btnGroup" class="btn"/>
+    <input type="button" value="点男同学" id="btnMan" class="btn"/>
+    <input type="button" value="点女同学" id="btnGirl" class="btn"/>
+</div>
+</body>
+<script>
+    //定义放名字的数组
+    var arrName = [
+        {"name": "张学业", "gender": "男"},
+        {"name": "尹伟", "gender": "男"},
+        {"name": "满意", "gender": "男"},
+        {"name": "郑斌龙", "gender": "男"},
+        {"name": "郑培文", "gender": "男"},
+        {"name": "赵文元", "gender": "男"},
+        {"name": "郭焕斌", "gender": "男"},
+        {"name": "周琰", "gender": "女"},
+        {"name": "王磊", "gender": "男"},
+        {"name": "孙梦尧", "gender": "男"},
+        {"name": "王梁", "gender": "男"},
+        {"name": "邓鹏飞", "gender": "男"},
+        {"name": "李浩", "gender": "男"},
+        {"name": "秦佳俊", "gender": "男"},
+        {"name": "王智勇", "gender": "男"},
+        {"name": "杨庚润", "gender": "男"},
+        {"name": "王月", "gender": "女"},
+        {"name": "张桦", "gender": "女"},
+        {"name": "李伟民", "gender": "男"},
+        {"name": "赵东亚", "gender": "女"},
+        {"name": "吴李桃", "gender": "女"},
+        {"name": "刘平", "gender": "女"},
+        {"name": "王倩", "gender": "女"},
+        {"name": "徐光旭", "gender": "男"},
+        {"name": "刘杨诚", "gender": "男"},
+        {"name": "刘丽娟", "gender": "女"},
+        {"name": "刘鹏", "gender": "男"},
+        {"name": "杨潇", "gender": "女"},
+        {"name": "邹玉平", "gender": "女"},
+        {"name": "候亚杰", "gender": "男"},
+        {"name": "肖磊鑫", "gender": "女"},
+        {"name": "蒋吉兆", "gender": "男"},
+        {"name": "耿芳芳", "gender": "女"},
+        {"name": "卢帅", "gender": "男"},
+        {"name": "朱博文", "gender": "男"},
+        {"name": "高立业", "gender": "男"},
+        {"name": "钱玉淳", "gender": "男"},
+        {"name": "黄智超", "gender": "男"},
+        {"name": "杨佳缙", "gender": "男"},
+        {"name": "杨振杰", "gender": "男"},
+        {"name": "张学泽", "gender": "男"},
+        {"name": "朱琼洁", "gender": "女"},
+        {"name": "周圣凯", "gender": "男"},
+        {"name": "邸鑫", "gender": "男"},
+        {"name": "李春罗", "gender": "男"},
+        {"name": "曹嘉远", "gender": "男"},
+        {"name": "郝熠", "gender": "男"},
+        {"name": "王圣红", "gender": "女"}];
+    //打印input框
+    var str = "";
+    for (var i = 0; i < arrName.length; i++) {
+        str += "<input type='button' value='" + arrName[i].name + "'>";
+        if ((i + 1) % 8 == 0) {
+            str += "<br />";
+        }
+    }
+    document.getElementById("dv").innerHTML = str;
+
+    var timer = null;
+    var flag = 0;
+    //注册点击事件  点一个同学
+    document.getElementById("btnOne").onclick = function () {
+        clearInterval(timer);
+        flag++;
+//        console.log(flag);
+        var inputObj = document.getElementsByTagName("input");
+
+        function setTime() {
+            //随机数
+            var num = parseInt(Math.random() * 48);
+            for (var i = 0; i < inputObj.length - 2; i++) {
+                inputObj[i].style.background = "";
+            }
+            inputObj[num].style.background = "red";
+        }
+
+        timer = setInterval(setTime, 100);
+        if (flag % 2 == 0) {
+            clearInterval(timer);
+        }
+    };
+    //注册点击事件 点一组同学
+    document.getElementById("btnGroup").onclick = function () {
+        clearInterval(timer);
+        flag++;
+        var inputObj = document.getElementsByTagName("input");
+
+        function setTime() {
+            //随机数
+            var num = parseInt(Math.random() * 5);
+            console.log(num);
+            for (var i = 0; i < inputObj.length - 2; i++) {
+                inputObj[i].style.background = "";
+            }
+            for (var j = 0; j < inputObj.length; j++) {
+                if (parseInt(j / 8) == num) {
+                    inputObj[j].style.background = "red";
+                }
+            }
+
+        }
+
+        timer = setInterval(setTime, 100);
+        if (flag % 2 == 0) {
+            clearInterval(timer);
+        }
+    };
+    //注册点击事件  点男同学
+    document.getElementById("btnMan").onclick = function () {
+        clearInterval(timer);
+        flag++;
+        var inputObj = document.getElementsByTagName("input");
+        //把男同学放在同一个数组
+        var strr="";
+        for(var j=0;j<arrName.length;j++){
+            if(arrName[j].gender=="男"){
+                strr=strr+" "+j;
+            }
+        }
+        arr=strr.split(" ");//arr中保存的是arrName中性别为男的索引
+//        console.log(arr);
+        function setTime() {
+            //随机数
+            var num = parseInt(Math.random() * 34);
+//            console.log(num);
+            for (var i = 0; i < inputObj.length - 2; i++) {
+                inputObj[i].style.background = "";
+            }
+                inputObj[arr[num+1]].style.background="red";
+        }
+
+        timer = setInterval(setTime, 100);
+        if (flag % 2 == 0) {
+            clearInterval(timer);
+        }
+    };
+    //注册点击事件  点女同学
+    document.getElementById("btnGirl").onclick = function () {
+        clearInterval(timer);
+        flag++;
+        var inputObj = document.getElementsByTagName("input");
+        //把女同学放在同一个数组
+        var strr="";
+        for(var j=0;j<arrName.length;j++){
+            if(arrName[j].gender=="女"){
+                strr=strr+" "+j;
+            }
+        }
+        arr=strr.split(" ");//arr中保存的是arrName中性别为男的索引
+//        console.log(arr);
+        function setTime() {
+            //随机数
+            var num = parseInt(Math.random() * 14);
+//            console.log(num);
+            for (var i = 0; i < inputObj.length - 2; i++) {
+                inputObj[i].style.background = "";
+            }
+            inputObj[arr[num+1]].style.background="red";
+        }
+
+        timer = setInterval(setTime, 100);
+        if (flag % 2 == 0) {
+            clearInterval(timer);
+        }
+    };
+
+
+
+
+
+
+
+
+
+
+//    var arr="";
+//    for(var j=0;j<arrName.length;j++){
+//        if(arrName[j].gender=="男"){
+//            arr+=arrName[j];
+//        }
+//    }
+
+//    var stre=0;
+//    for(var j=0;j<arrName.length;j++){
+//        if(arrName[j].gender=="男"){
+//            stre++;
+//        }
+//    }
+//    console.log(stre);
+</script>
+</html>

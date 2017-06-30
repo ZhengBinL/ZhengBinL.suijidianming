@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        input {
+            width: 50px;
+            margin: 5px;
+        }
+
+        .btn {
+            width: 80px;
+        }
+    </style>
+</head>
+<body>
+<div id="dv"></div>
+<div id="dvv">
+    <input type="button" value="点一个同学" id="btnOne" class="btn"/><input type="button" value="点一组同学" id="btnGroup"
+                                                                       class="btn"/>
+</div>
+</body>
+<script>
+    //定义放名字的数组
+    var arrName = ["张学业", "尹伟", "满意", "郑斌龙", "郑培文", "赵文元", "郭焕斌", "周琰", "王磊", "孙梦尧", "王梁", "邓鹏飞", "李浩", "秦佳俊", "王智勇", "杨庚润",
+        "王月", "张桦", "李伟民", "赵东亚", "吴李桃", "刘平", "王倩", "徐光旭", "刘杨诚", "刘丽娟", "刘鹏", "杨潇", "邹玉平", "候亚杰", "肖磊鑫", "蒋吉兆", "耿芳芳",
+        "卢帅", "朱博文", "高立业", "钱玉淳", "黄智超", "杨佳缙", "杨振杰", "张学泽", "朱琼洁", "周圣凯", "邸鑫", "李春罗", "曹嘉远", "郝熠", "王圣红"];
+    //
+    var str = "";
+    for (var i = 0; i < arrName.length; i++) {
+        str += "<input type='button' value='" + arrName[i] + "'>";
+        if ((i + 1) % 8 == 0) {
+            str += "<br />";
+        }
+    }
+    document.getElementById("dv").innerHTML = str;
+
+    var timer = null;
+    var flag = 0;
+    //注册点击事件  点一个同学
+    document.getElementById("btnOne").onclick = function () {
+        clearInterval(timer);
+        flag++;
+//        console.log(flag);
+        var inputObj = document.getElementsByTagName("input");
+
+        function setTime() {
+            //随机数
+            var num = parseInt(Math.random() * 48);
+            for (var i = 0; i < inputObj.length - 2; i++) {
+                inputObj[i].style.background = "";
+            }
+            inputObj[num].style.background = "red";
+        }
+
+        timer = setInterval(setTime, 100);
+        if (flag % 2 == 0) {
+            clearInterval(timer);
+        }
+    };
+    //注册点击事件 点一组同学
+    document.getElementById("btnGroup").onclick = function () {
+        clearInterval(timer);
+        flag++;
+        var inputObj = document.getElementsByTagName("input");
+
+        function setTime() {
+            //随机数
+            var num = parseInt(Math.random() * 5);
+            console.log(num);
+            for (var i = 0; i < inputObj.length - 2; i++) {
+                inputObj[i].style.background = "";
+            }
+            for(var j=0;j<inputObj.length;j++){
+                if (parseInt(j/8)== num) {
+                    inputObj[j].style.background = "red";
+                }
+            }
+
+        }
+        timer = setInterval(setTime, 100);
+        if (flag % 2 == 0) {
+            clearInterval(timer);
+        }
+    };
+</script>
+</html>

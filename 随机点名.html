@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>随机点名</title>
+    <style>
+        .besides {
+            width: 300px;
+            height: 300px;
+            margin:0 auto;
+            background: red;
+            text-align: center;
+        }
+        .btn {
+            width: 100px;
+            height: 50px;
+        }
+        .inside {
+            width: 140px;
+            height: 140px;
+            background: #fff;
+            margin:0 auto;
+            padding:30px;
+        }
+    </style>
+</head>
+<body>
+<div class="besides">
+    <input type="button" value="点名开始" class="btn" id="btn"/>
+    <div class="inside" id="name">a</div>
+</div>
+<script>
+    //定义一个数组存放名字
+    var arr=["张学业","尹伟","满意","郑斌龙","郑培文","赵文元","郭焕斌","周琰","王磊","孙梦尧","王梁","邓鹏飞","李浩","秦佳俊","王智勇","杨庚润",
+        "王月","张桦","李伟民","赵东亚","吴李桃","刘平","王倩","徐光旭","刘杨诚","刘丽娟","刘鹏","杨潇","邹玉平","候亚杰","肖磊鑫","蒋吉兆","耿芳芳",
+        "卢帅","朱博文","高立业","钱玉淳","黄智超","杨佳缙","杨振杰","张学泽","朱琼洁","周圣凯","邸鑫","李春罗","曹嘉远","郝熠","王圣红"];
+    //获取btn  注册点击事件 添加事件处理函数
+    document.getElementById("btn").onclick= function () {
+//        //产生随机数
+//       var i=parseInt(Math.random()*16);
+//        console.log(i);
+//        document.getElementById("name").innerText=arr[i];
+            var i = parseInt(Math.random() * 47);
+            document.getElementById("name").innerText = arr[i];
+
+    };
+
+</script>
+</body>
+</html>
